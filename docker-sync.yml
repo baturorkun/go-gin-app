@@ -1,0 +1,15 @@
+version: '2'
+options:
+  verbose: false
+syncs:
+  apppath-sync:
+    src: ${APP_PATH}
+    sync_userid: 501
+
+  gopath-sync:
+    src: ${GO_PATH}
+    sync_userid: 501
+
+  gobin-sync:
+    src: ${GO_BIN}
+    sync_userid: 501

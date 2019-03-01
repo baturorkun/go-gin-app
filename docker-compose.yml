@@ -1,0 +1,87 @@
+version: '2'
+
+services:
+
+  workspace:
+    container_name: ginapp_ws
+    #build: ./docker/workspace
+    image: busybox
+    volumes:
+      - ${GO_PATH}:/workspace
+      - ${APP_PATH}:/workspace/src/app
+      - ${GO_BIN}:/workspace/bin
+    networks:
+      - mainnet
+
+  db:
+    container_name: ginapp_db
+    image: mysql:5.7
+    #build: ./docker/db
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: 'blog'
+      # So you don't have to use root, but you can if you like
+      #MYSQL_USER: 'blog'
+      # You can use whatever password you like
+      #MYSQL_PASSWORD: 'batur'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'batur'
+      #STARTUP_SQL: "/tmp/init/db.sql"
+
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+    volumes_from:
+      - workspace
+    links:
+      - workspace
+    networks:
+      - mainnet
+
+  adminer:
+    container_name: ginapp_adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - mainnet
+
+  redis:
+    container_name: ginapp_rd
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ../data/redis:/data
+    networks:
+      - mainnet
+
+  go:
+    container_name: ginapp_go
+    build: ./docker/go
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+    volumes_from:
+      - workspace
+    networks:
+      - mainnet
+    links:
+      - workspace
+
+
+volumes:
+  data-sync:
+    external: true
+  gopath-sync:
+    external: true
+  gobin-sync:
+    external: true
+
+networks:
+  mainnet:
