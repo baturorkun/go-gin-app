@@ -2,8 +2,6 @@
 
 An example of gin contains many useful features
 
-( partial forked from EDDYCJY/go-gin-example )
-
 
 ## Installation
 ```
@@ -85,3 +83,5 @@ Actual pid is 4393
 - App configurable
 - Cron
 - Redis
+
+( partial forked from EDDYCJY/go-gin-example )
