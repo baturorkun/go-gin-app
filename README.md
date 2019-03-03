@@ -52,6 +52,8 @@ $ go run main.go
 ```
 $ docker-compose up
 
+Adminer Database Tool : http://localhost:8080
+
 ```
 
 Project information and existing API
@@ -90,4 +92,6 @@ Actual pid is 4393
 - Cron
 - Redis
 
-######( partial forked from EDDYCJY/go-gin-example )
+### Resources
+
+partial forked from EDDYCJY/go-gin-example
