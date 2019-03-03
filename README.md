@@ -48,6 +48,12 @@ $ cd $GOPATH/src/go-gin-app
 $ go run main.go 
 ```
 
+### Docker Run
+```
+$ docker-compose up
+
+```
+
 Project information and existing API
 
 ```
@@ -84,4 +90,4 @@ Actual pid is 4393
 - Cron
 - Redis
 
-( partial forked from EDDYCJY/go-gin-example )
+######( partial forked from EDDYCJY/go-gin-example )

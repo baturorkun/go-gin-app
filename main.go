@@ -3,19 +3,19 @@ package main
 import (
 	"fmt"
 	"github.com/baturorkun/go-gin-app/models"
+	"github.com/baturorkun/go-gin-app/resources/logging"
 	"log"
 	"net/http"
 
 	"github.com/baturorkun/go-gin-app/resources/gredis"
-	"github.com/baturorkun/go-gin-app/resources/logging"
 	"github.com/baturorkun/go-gin-app/resources/setting"
 	"github.com/baturorkun/go-gin-app/routers"
 )
 
 func init() {
+	logging.Setup()
 	setting.Setup()
 	models.Setup()
-	logging.Setup()
 	gredis.Setup()
 }
 
